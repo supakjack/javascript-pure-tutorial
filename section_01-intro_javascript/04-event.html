@@ -1,0 +1,20 @@
+<!-- 
+                        คำถาม
+    1. อธิบาย ฟังก์ชัน door_switch ว่าทำงานอย่างไร
+    2. อะไรคือ onclick
+    3. เขียน script ทั้งหมด ไว้ข้างล่างได้ไหม เพราะเหตุใด 
+ -->
+<script>
+  function door_switch(class_name) {
+    let target = document.querySelector('.' + class_name);
+    let on_status = 'Door open it.';
+    let off_status = 'Door close it.';
+    if (target.textContent == on_status) {
+      target.textContent = off_status;
+    } else {
+      target.textContent = on_status;
+    }
+  }
+</script>
+<div class="show">Door close it.</div>
+<button onclick="door_switch('show')">switch it.</button>

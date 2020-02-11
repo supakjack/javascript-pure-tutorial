@@ -1,0 +1,30 @@
+<!-- 
+                        คำถาม
+    1. selector จากตัวอย่างมีกี่ประเภท แต่ละประเภทแตกต่างกันอย่างไร 
+    2. ถ้าต้อง เลือกใช้ selector 1 ประเภท จะเลือกประเภทใด
+    3. เขียน script ไว้ข้างบนได้ไหม เพราะเหตุใด 
+-->
+<div name="copy_txt" class="copy">copy here 1</div>
+<div name="copy_txt" class="copy">copy here 2</div>
+<div name="copy_txt" class="copy">copy here 3</div>
+<div name="paste_txt" class="paste">paste here 1</div>
+<div name="paste_txt" class="paste">paste here 2</div>
+<div name="paste_txt" class="paste">paste here 3</div>
+<script>
+  let copy_item;
+
+  copy_item = document.querySelector('.copy');
+  console.log(copy_item);
+
+  copy_item = document.querySelectorAll('.copy');
+  console.log(copy_item);
+
+  copy_item = document.getElementsByClassName('copy');
+  console.log(copy_item);
+
+  copy_item = document.getElementsByName('copy_txt');
+  console.log(copy_item);
+
+  copy_item = document.getElementsByTagName('div');
+  console.log(copy_item);
+</script>

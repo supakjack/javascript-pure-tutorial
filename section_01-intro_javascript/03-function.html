@@ -1,0 +1,21 @@
+<!-- 
+                        คำถาม
+    1. อธิบาย ฟังก์ชัน set_red_text ว่าทำงานอย่างไร
+    2. เขียน script ทั้งหมด ไว้ข้างบนได้ไหม เพราะเหตุใด 
+ -->
+<style>
+  .bg-red {
+    background-color: red;
+  }
+</style>
+<div class="show">close now.</div>
+<script>
+  // define and declear function
+  function set_red_text(class_name) {
+    let target;
+    target = document.querySelector('.' + class_name);
+    target.classList.add('bg-red');
+  }
+  // use function
+  set_red_text('show');
+</script>

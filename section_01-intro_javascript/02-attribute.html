@@ -1,0 +1,45 @@
+<!-- 
+                        คำถาม
+    1. อธิบาย copy_item
+    2. อธิบาย paste_items_list
+    3. อธิบาย paste_items 
+    4. map คืออะไร ต่างจาก for-loop อย่างร
+    5. item.value = copy_item.value ค่ืออะไร ทำงานอย่างไร
+    6. item.classList.add('bg-red'); ค่ืออะไร ทำงานอย่างไร
+    7. item.className ค่ืออะไร ทำงานอย่างไร
+    8. เขียน script ไว้ข้างบนได้ไหม เพราะเหตุใด 
+ -->
+<style>
+  .bg-red {
+    background-color: red;
+  }
+</style>
+<input type="text" name="copy_txt" class="copy" value="I am copy item" />
+<input type="text" name="paste_txt" class="paste" value="I am paste item 1" />
+<input type="text" name="paste_txt" class="paste" value="I am paste item 2" />
+<input type="text" name="paste_txt" class="paste" value="I am paste item 3" />
+<script>
+  let copy_item;
+  let paste_items_list;
+  let paste_items;
+
+  // object
+  copy_item = document.querySelector('.copy');
+  console.log(copy_item);
+
+  // nodelist
+  paste_items_list = document.querySelectorAll('.paste');
+  console.log(paste_items_list);
+
+  //cast nodelist to array
+  paste_items = [...paste_items_list];
+  console.log(paste_items);
+
+  // same loop but can return value and good performance and more method support
+  paste_items.map(function(item, index) {
+    console.log('index item : ' + index);
+    item.value = copy_item.value;
+    item.classList.add('bg-red');
+    console.log('class name item : '+item.className);
+  });
+</script>

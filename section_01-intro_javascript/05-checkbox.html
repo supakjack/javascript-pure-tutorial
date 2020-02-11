@@ -1,0 +1,196 @@
+<!-- 
+                        คำถาม
+    1. อธิบายฟังก์ชันแต่ละฟังก์ชัน
+    2. อธิบาย ฟังก์ชัน some ว่าทำงานอย่างไร
+    3. อธิบาย ฟังก์ชัน filter ว่าทำงานอย่างไร
+    4. อธิบาย ฟังก์ชัน reduce ว่าทำงานอย่างไร
+    5. เขียน script ทั้งหมด ไว้ข้างล่างได้ไหม เพราะเหตุใด 
+ -->
+<script>
+  function clear_fruit() {
+    let fruit_check_boxs_list;
+    let fruit_check_boxs;
+    let show_fruit_number;
+    let show_fruit_name;
+    let show_fruit_value;
+    fruit_check_boxs_list = document.querySelectorAll('.fruit');
+    show_fruit_number = document.querySelector('.show_fruit_number');
+    show_fruit_name = document.querySelector('.show_fruit_name');
+    show_fruit_value = document.querySelector('.show_fruit_value');
+    show_fruit_number.value = '';
+    show_fruit_name.value = '';
+    show_fruit_value.value = '';
+    fruit_check_boxs = [...fruit_check_boxs_list];
+    fruit_check_boxs.map(function(item, index) {
+      item.checked = false;
+    });
+  }
+
+  function close_fruit() {
+    let fruit_check_boxs_list;
+    let show_fruit_number;
+    let show_fruit_name;
+    let show_fruit_value;
+    fruit_check_boxs_list = document.querySelectorAll('.fruit');
+    show_fruit_number = document.querySelector('.show_fruit_number');
+    show_fruit_name = document.querySelector('.show_fruit_name');
+    show_fruit_value = document.querySelector('.show_fruit_value');
+    show_fruit_number.disabled = true;
+    show_fruit_name.disabled = true;
+    show_fruit_value.disabled = true;
+    fruit_check_boxs = [...fruit_check_boxs_list];
+    fruit_check_boxs.map(function(item, index) {
+      item.disabled = true;
+    });
+    clear_fruit();
+  }
+
+  function open_fruit() {
+    let fruit_check_boxs_list;
+    let show_fruit_number;
+    let show_fruit_name;
+    let show_fruit_value;
+    fruit_check_boxs_list = document.querySelectorAll('.fruit');
+    show_fruit_number = document.querySelector('.show_fruit_number');
+    show_fruit_name = document.querySelector('.show_fruit_name');
+    show_fruit_value = document.querySelector('.show_fruit_value');
+    show_fruit_number.disabled = false;
+    show_fruit_name.disabled = false;
+    show_fruit_value.disabled = false;
+    fruit_check_boxs = [...fruit_check_boxs_list];
+    fruit_check_boxs.map(function(item, index) {
+      item.disabled = false;
+    });
+  }
+
+  function get_all_check_value() {
+    let fruit_check_boxs_list;
+    let fruit_check_boxs;
+    fruit_check_boxs_list = document.querySelectorAll('.fruit');
+    fruit_check_boxs = [...fruit_check_boxs_list];
+    let sum_value;
+    sum_value = fruit_check_boxs.some(function(item) {
+      return item.checked == true;
+    });
+    if (sum_value) {
+      sum_value = fruit_check_boxs
+        .filter(function(item) {
+          return item.checked == true;
+        })
+        .map(function(item) {
+          return Number(item.value);
+        })
+        .reduce(function(total, value) {
+          return total + value;
+        });
+    } else {
+      sum_value = '';
+    }
+    return sum_value;
+  }
+
+  function get_all_check_name() {
+    let fruit_check_boxs_list;
+    let fruit_check_boxs;
+    fruit_check_boxs_list = document.querySelectorAll('.fruit');
+    fruit_check_boxs = [...fruit_check_boxs_list];
+    let total_name;
+    total_name = fruit_check_boxs.some(function(item) {
+      return item.checked == true;
+    });
+    if (total_name) {
+      total_name = fruit_check_boxs
+        .filter(function(item) {
+          return item.checked == true;
+        })
+        .map(function(item) {
+          return item.name;
+        })
+        .reduce(function(total, name) {
+          return total + ' , ' + name;
+        });
+    } else {
+      total_name = '';
+    }
+    return total_name;
+  }
+
+  function get_all_check_count() {
+    let fruit_check_boxs_list;
+    let fruit_check_boxs;
+    fruit_check_boxs_list = document.querySelectorAll('.fruit');
+    fruit_check_boxs = [...fruit_check_boxs_list];
+    let total_count;
+    total_count = fruit_check_boxs.some(function(item) {
+      return item.checked == true;
+    });
+    if (total_count) {
+      total_count = fruit_check_boxs.filter(function(item) {
+        return item.checked == true;
+      });
+      total_count = total_count.length;
+    } else {
+      total_count = 0;
+    }
+    return total_count;
+  }
+
+  function click_check_box() {
+    let show_fruit_number;
+    let show_fruit_name;
+    let show_fruit_value;
+    show_fruit_number = document.querySelector('.show_fruit_number');
+    show_fruit_name = document.querySelector('.show_fruit_name');
+    show_fruit_value = document.querySelector('.show_fruit_value');
+    show_fruit_number.value = get_all_check_count();
+    show_fruit_name.value = get_all_check_name();
+    show_fruit_value.value = get_all_check_value();
+  }
+</script>
+<input
+  readonly
+  type="text"
+  class="show_fruit_number"
+  placeholder="number of fruit"
+/>
+<br />
+<input
+  readonly
+  type="text"
+  class="show_fruit_name"
+  placeholder="name of all fruit"
+/>
+<br />
+<input
+  readonly
+  type="text"
+  class="show_fruit_value"
+  placeholder="sum value of all fruit"
+/>
+<br />
+
+<input
+  onclick="click_check_box()"
+  class="fruit"
+  type="checkbox"
+  value="10"
+  name="apple"
+/>apple<br />
+<input
+  onclick="click_check_box()"
+  class="fruit"
+  type="checkbox"
+  value="15"
+  name="banana"
+/>banana<br />
+<input
+  onclick="click_check_box()"
+  class="fruit"
+  type="checkbox"
+  value="20"
+  name="orange"
+/>orange<br />
+
+<button onclick="clear_fruit()" class="clear">clear</button>
+<button onclick="close_fruit()" class="close">close</button>
+<button onclick="open_fruit()" class="open">open</button>
