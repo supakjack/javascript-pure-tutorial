@@ -146,6 +146,23 @@
     show_fruit_name.value = get_all_check_name();
     show_fruit_value.value = get_all_check_value();
   }
+
+  function check_selected_status(selected) {
+    console.log(selected);
+    let selected_items;
+    selected_items = [...selected];
+    selected_items
+      .filter(function(item) {
+        return item.selected == true;
+      })
+      .map(function(item) {
+        if (item.value == 1) {
+          open_fruit();
+        } else {
+          close_fruit();
+        }
+      });
+  }
 </script>
 <input
   readonly
@@ -192,5 +209,10 @@
 />orange<br />
 
 <button onclick="clear_fruit()" class="clear">clear</button>
-<button onclick="close_fruit()" class="close">close</button>
+<select onchange="check_selected_status(this)" class="switch">
+  <option value="" disabled selected>Select your status</option>
+  <option value="1">open</option>
+  <option value="2">close</option>
+</select>
 <button onclick="open_fruit()" class="open">open</button>
+<button onclick="close_fruit()" class="close">close</button>
